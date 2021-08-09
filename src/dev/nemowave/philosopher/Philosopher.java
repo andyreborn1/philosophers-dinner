@@ -1,4 +1,10 @@
-package dev.nemowave;
+/**
+ * Nesta solução o filósofo pega o primeiro o garfo esquerdo e tenta pegar o direito
+ * caso o garfo direito esteja sendo usado, ele aguarda até que o garfo diretiro esteja disponível
+ * isso pode acabar causando um deadlock
+ */
+
+package dev.nemowave.philosopher;
 
 public class Philosopher implements Runnable {
 
@@ -14,7 +20,7 @@ public class Philosopher implements Runnable {
 
     public void think() {
         System.out.printf("Filósofo %d está pensando\n", this.id);
-        aMimir((int) (Math.random() * 4000));
+        aMimir(1000);//(int) (Math.random() * 4000) + 4000
     }
 
     public void aMimir(int time) {
@@ -27,9 +33,8 @@ public class Philosopher implements Runnable {
 
     @Override
     public void run() {
-        think();
         while (true) {
-
+            think();
             if (leftFork.get()) {
                 System.out.printf("Filósofo %d pegou o garfo esquerdo\n", this.id);
 
@@ -45,7 +50,6 @@ public class Philosopher implements Runnable {
                 leftFork.put();
                 rightFork.put();
             }
-            think();
         }
     }
 }

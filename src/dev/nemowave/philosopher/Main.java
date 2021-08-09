@@ -1,4 +1,4 @@
-package dev.nemowave;
+package dev.nemowave.philosopher;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,12 +17,14 @@ public class Main {
             Fork leftFork = forks[i];
             Fork rightFork = forks[(i + 1) % size];
 
+            Thread thread;
+
 //            philosophers[i] = new Philosopher(i,leftFork,rightFork);
-//            Thread thread = new Thread(philosophers[i]);
-//            thread.start();
+//            thread = new Thread(philosophers[i]);
 
             philosopherTwo[i] = new PhilosopherTwo(i, leftFork, rightFork);
-            Thread thread = new Thread(philosopherTwo[i]);
+            thread = new Thread(philosopherTwo[i]);
+
             thread.start();
         }
     }

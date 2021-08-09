@@ -1,6 +1,9 @@
-package dev.nemowave;
+/**
+ * O garfo pode ter o valor de 0 ou 1
+ * 1 indica que ele está livre e 0 indica que ele está em uso
+ */
 
-import java.util.concurrent.Semaphore;
+package dev.nemowave.philosopher;
 
 public class Fork {
 
@@ -18,18 +21,7 @@ public class Fork {
         return false;
     }
 
-    public int getValue() {
-        return value;
-    }
-
     public void put() {
         this.value = 1;
-    }
-
-    public boolean free() {
-        if (this.value == 1) {
-            return true;
-        }
-        return false;
     }
 }

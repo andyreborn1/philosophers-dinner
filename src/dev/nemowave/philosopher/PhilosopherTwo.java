@@ -1,7 +1,12 @@
-package dev.nemowave;
+/**
+ * Nesta solução o filósofo pega o garfo esquerdo e tenta pegar o direito
+ * caro não consiga, ele devolve o garfo esquerdo e volta a pensar
+ * pode ocorrer starvation, mas a chance diminui consideravelmente adicionando o fator aleatório nos sleeps
+ */
+
+package dev.nemowave.philosopher;
 
 public class PhilosopherTwo extends Philosopher {
-    private int eatCount = 0;
 
     public PhilosopherTwo(int id, Fork leftFork, Fork rightFork) {
         super(id, leftFork, rightFork);
@@ -11,7 +16,7 @@ public class PhilosopherTwo extends Philosopher {
     public void run() {
         while (true) {
             think();
-            if ( leftFork.get()) {
+            if (leftFork.get()) {
                 System.out.printf("Filósofo %d pegou o garfo esquerdo\n", this.id);
 
                 if (rightFork.get()) {
